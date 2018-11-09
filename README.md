@@ -82,11 +82,12 @@ DIP is a commonly used practice (often accidentally due to test pushing you towa
 it's advice can be useful for designing testable code. DIP has two main components:
 
 **a)** High-level modules should not depend on low-level modules. Both should depend on abstraction.
+
 **b)** Abstractions should not depend on details. Details should depend on abstractions.
 
 OK so what does this mean? So in our example we can think of our `ChangeToRedWhenClickedButton` as a "high-level module"
-and our `StrictOS` as a "low-level module". So **a** is stating that our button should not "depend" on our OS utility. What
-**b** is then suggesting is that our button instead depends on an abstraction. This is all pretty academic right now
+and our `StrictOS` as a "low-level module". So **(a)** is stating that our button should not "depend" on our OS utility. What
+**(b)** is then suggesting is that our button instead depends on an abstraction. This is all pretty academic right now
 so let's try following the advice and create an abstraction for our `StrictOS`:
 
 ```java
@@ -173,7 +174,7 @@ level ones could be built to.
 ## Going further
 
 OK so we've learnt some fancy terminology and we've got a test. Have we really improved the code other than for our
-test? Not a lot. Let's think a little hard about **b**: "Abstractions should not depend on details."
+test? Not a lot. Let's think a little hard about **(b)**: "Abstractions should not depend on details."
 If we look at our `ClickPermissionRequester` it's pretty clear it's an abstraction that does "depend on the details". For instance,
 in our `ChangeToRedWhenClickedButton` we don't care about the case where permissions aren't granted. But because of the detail
 of the `requestClickPermission` method we've made it care about that case. Let's flip this on it's head and create an
@@ -243,6 +244,9 @@ an error or something of that nature.
 This is example is obviously a little contrived. Here's some points to keep in mind
 when applying any of this in the real world:
 
+* Often you end up dealing with objects where you don't have access to the constructor (looking at you Android). This
+makes "injecting" the abstractions you pull out a lot harder. You can solve this with public fields with default values or
+Dependency Injection/Service Lookup frameworks.
 * We'd ideally want tests that check the behaviour at an application level before running through a change like
 this. With a more complex example it would be easy to miss a detail when creating your abstractions and end up
 with changes in behaviours or errors.
