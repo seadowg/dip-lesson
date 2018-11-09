@@ -248,7 +248,7 @@ when applying any of this in the real world:
 
 * Often you end up dealing with objects where you don't have access to the constructor (looking at you Android). This
 makes "injecting" the abstractions you pull out a lot harder. You can solve this with public fields with default values or
-Dependency Injection/Service Lookup frameworks.
+Dependency Injection/Service Locator frameworks.
 * We'd ideally want tests that check the behaviour at an application level before running through a change like
 this. With a more complex example it would be easy to miss a detail when creating your abstractions and end up
 with changes in behaviours or errors.
