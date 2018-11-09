@@ -4,14 +4,15 @@
 
 Imagine you are working on a GUI application. The code for this application
 has existed for a while and the team weren't using strict Test Driven Development.
-As you've recently started working in the codebase you'd like to write some tests
+You've recently started working in the codebase and you'd like to write some tests
 that let you feel more confident about making changes.
 
 ## The object under test
 
 You want to start making changes to the code for a button in the application. This
 particular button is one that changes from whatever color is starts out as to
-red whenever it's clicked. It's apply named `ChangeToRedWhenClickedButton`.
+red whenever it's clicked. As we're in Java and our names are long and explicit it's named
+`ChangeToRedWhenClickedButton`.
 
 One complexity is that our application runs in a very strict operating environment
 where we need to ask permission to respond to clicks events the first time they
@@ -164,17 +165,18 @@ public class ChangeToRedWhenClickedButtonTest {
 ```
 
 And it passes! By extracting an abstraction around requesting click permissions we've made our object
-more testable. Of course this also provides other advantages: one for instance is that if the `StrictOS`
+more testable.
+
+Of course this also provides other advantages: one for instance is that if the `StrictOS`
 object changes it's API then our `ChangeToRedWhenClickedButton` does not have to be changed (unless the entire nature
-of the behaviour changes). This was actually the original motivation for the thinking around DIP. Original examples
-of thinking this way come from manufacturing chips where having high level hardware depend on low level ones meant
-it was very expensive to iterate. A cheaper method was to have the high level module depend on an abstraction the low
-level ones could be built to.
+of the behaviour changes). We're keeping the parts of our code we control protected from the parts we don't.
 
 ## Going further
 
 OK so we've learnt some fancy terminology and we've got a test. Have we really improved the code other than for our
-test? Not a lot. Let's think a little hard about **(b)**: "Abstractions should not depend on details."
+testability? Not a lot.
+
+Let's think a little hard about **(b)**: "Abstractions should not depend on details."
 If we look at our `ClickPermissionRequester` it's pretty clear it's an abstraction that does "depend on the details". For instance,
 in our `ChangeToRedWhenClickedButton` we don't care about the case where permissions aren't granted. But because of the detail
 of the `requestClickPermission` method we've made it care about that case. Let's flip this on it's head and create an
@@ -241,7 +243,7 @@ an error or something of that nature.
 
 ## Reality check
 
-This is example is obviously a little contrived. Here's some points to keep in mind
+This example is obviously a little contrived. Here's some points to keep in mind
 when applying any of this in the real world:
 
 * Often you end up dealing with objects where you don't have access to the constructor (looking at you Android). This
