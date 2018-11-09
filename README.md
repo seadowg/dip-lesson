@@ -254,5 +254,7 @@ this. With a more complex example it would be easy to miss a detail when creatin
 with changes in behaviours or errors.
 * It's far more ideal to apply this kind of philosophy with a test first approach. In that case our abstractions can be
 driven straight from the tests. This allows to not get caught up in the details and get straight to our `Clicker` abstraction.
+* If you're in a similar situation but you own the static method (i.e. it's code in your codebase) getting in your
+way a good first step is to fix that rather than wrap it (as you may already have an "abstraction" that is just static).
 * As with anything in programming this is just "like, your opinion man". If DIP helps you solve a problem then
 that's fantastic. If it doesn't, don't sweat it.
