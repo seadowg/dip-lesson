@@ -182,7 +182,7 @@ in our `ChangeToRedWhenClickedButton` we don't care about the case where permiss
 of the `requestClickPermission` method we've made it care about that case. Let's flip this on it's head and create an
 abstraction from the viewpoint of our "high level" module:
 
-```
+```java
 public interface Clicker {
     void click(ClickCallback clickCallback);
 
